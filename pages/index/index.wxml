@@ -1,23 +1,39 @@
 <!--index.wxml-->
-<view class="container">
-  <view class="userinfo">
-    <block wx:if="{{canIUseOpenData}}">
-      <view class="userinfo-avatar" bindtap="bindViewTap">
-        <open-data type="userAvatarUrl"></open-data>
-      </view>
-      <open-data type="userNickName"></open-data>
-    </block>
-    <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
-    </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view>
+<import src="/pages/component/diaryItem/diaryItem.wxml" />
+
+<view class="date row-center">
+	<van-icon name="arrow-left" size='36rpx' bind:click='lastMonth'></van-icon>
+	<view class="flex1 sub-title" bindtap="showDatePicker">
+		<view class="center">{{currentPath}}</view>
+	</view>
+	<van-icon name="arrow" bind:click='nextMonth'></van-icon>
 </view>
+
+<view wx:if="{{diaryList.length > 0}}" class="diary-list">
+	<view wx:for="{{diaryList}}" wx:key="this" wx:for-item="title" wx:for-index="idx"
+		bindtap="viewDiary" bindlongtap="deleteDiary" data-index="{{idx}}">
+		<template is='dairy-item' data="{{title}}"></template>
+		<view class="{{idx != diaryList.length - 1 && 'divider'}}"></view>
+	</view>
+</view>
+
+<block wx:else>
+	<view class="assist-text secondary-color center">当前目录没有日记</view>
+</block>
+
+<view class="float-button center-both" bindtap="showDialog">
+	<van-icon name="plus" size='36rpx' color='#1E90FF'></van-icon>
+</view>
+
+<van-popup round show="{{ showPop }}" position="bottom" bind:close="hideDatePicker" custom-style='height:30%'>
+	<van-datetime-picker type="year-month" value="{{ currentDate }}" min-date="{{ minDate }}" max-date="{{ maxDate }}"
+		bind:cancel="hideDatePicker" bind:confirm="selectMonth" />
+</van-popup>
+
+<van-dialog use-slot title="新建日记" show="{{ showDialog }}" show-cancel-button confirm-button-color="#1E90FF"
+	bind:close="showDialog" bind:confirm='addDiary'>
+	<view class="col dialog-container">
+		<view class="flex1"></view>
+		<input class="sub-title primary-color input-title" auto-focus placeholder='请输入日记标题' model:value='{{newDiaryName}}'/>
+	</view>
+</van-dialog>

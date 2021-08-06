@@ -1,0 +1,8 @@
+<!--pages/component/dairyItem/diaryItem.wxml-->
+<template name="dairy-item">
+	<view class="diary-container row-center">
+		<van-icon name="notes-o" size='36rpx'></van-icon>
+		<text class="default-text primary-color diary-title">{{title}}</text>
+	</view>
+</template>
+

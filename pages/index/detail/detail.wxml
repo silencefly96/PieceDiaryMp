@@ -1,0 +1,14 @@
+<!--pages/index/detail/detail.wxml-->
+<view class="row-center top-container primary-color default-text">
+    <view class="flex1 top-item" data-value="2" bindtap="changeFontSize">字体+</view>
+    <view class="flex1 top-item" data-value="0" bindtap="changeFontSize">默认</view>
+    <view class="flex1 top-item" data-value="-2" bindtap="changeFontSize">字体-</view>
+    <view class="flex1 top-item" bindtap="changeFontColor">颜色</view>
+</view>
+
+<view class="text-container" style="height:{{containerHeight}}rpx;">
+    <textarea class="primary-color default-text text" maxlength='-1' style="font-size: {{fontSize}}rpx;color: {{fontColorArray[fontColorIndex]}};" value="{{content}}" bindinput='inputText' bindconfirm='nextParagraph'/>
+</view>
+
+<button class="button" style="margin-bottom:{{bottomHeight}}rpx;" bind:tap="onFinish">完成</button>
+

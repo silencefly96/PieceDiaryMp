@@ -1,13 +1,43 @@
 {
-  "pages":[
-    "pages/index/index"
-  ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black"
-  },
-  "style": "v2",
-  "sitemapLocation": "sitemap.json"
+	"pages": [
+		"pages/index/index",
+		"pages/setting/setting",
+		"pages/index/detail/detail",
+		"pages/piece/piece"
+	],
+	"window": {
+		"backgroundTextStyle": "dark",
+		"enablePullDownRefresh": false,
+		"navigationBarBackgroundColor": "#1E90FF",
+		"navigationBarTitleText": "碎片日记",
+		"navigationBarTextStyle": "white"
+	},
+	"sitemapLocation": "sitemap.json",
+	"tabBar": {
+		"borderStyle": "black",
+		"position": "bottom",
+		"backgroundColor": "#FFFFFF",
+		"color": "#C4C4C4",
+		"selectedColor": "#1E90FF",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"iconPath": "/assets/images/home-selected.png",
+				"selectedIconPath": "/assets/images/home.png",
+				"text": "日记"
+			},
+			{
+				"pagePath": "pages/setting/setting",
+				"iconPath": "/assets/images/setting-selected.png",
+				"selectedIconPath": "/assets/images/setting.png",
+				"text": "设置"
+			}
+		]
+	},
+	"usingComponents": {
+		"van-icon": "vant-weapp/icon/index",
+		"van-popup": "vant-weapp/popup/index",
+		"van-datetime-picker": "vant-weapp/datetime-picker/index",
+		"van-dialog": "vant-weapp/dialog/index"
+	}
 }

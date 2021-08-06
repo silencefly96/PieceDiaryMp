@@ -1,4 +1,7 @@
 /**app.wxss**/
+@import '/assets/style/color.wxss';
+@import '/assets/style/font.wxss';
+
 .container {
   height: 100%;
   display: flex;
@@ -57,4 +60,14 @@
 }
 .flex3{
   flex: 3;
+}
+
+.divider{
+  height: 2rpx;
+  background: #E5E5E5;
+}
+
+/* 修正图标不居中问题，对应36rpx */
+.van-icon{
+  vertical-align: -12%;
 }
